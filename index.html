@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TUMED — Tu salud, más cerca</title>
+<meta name="description" content="TUMED conecta a las personas con las farmacias más cercanas que tienen disponible el medicamento que necesitan. Especificación, arquitectura, diagramas y prototipo del proyecto formativo SENA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="container nav-row">
+    <a href="#top" class="brand">
+      <img src="img/logo_tumed.jpg" alt="Logotipo de TUMED">
+      TUMED
+    </a>
+
+    <nav class="links" id="navLinks">
+      <a href="#problema">El problema</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#funciones">Funciones</a>
+      <a href="#diagramas">Diagramas</a>
+      <a href="#arquitectura">Arquitectura</a>
+      <a href="#prototipo">Prototipo</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="text-toggle" id="textToggle" aria-pressed="false">
+        <span aria-hidden="true">Aa</span> Texto grande
+      </button>
+      <a href="#prototipo" class="btn btn-ghost">Ver prototipo</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Especificación de requisitos IEEE 830 · SENA 3275760</span>
+        <h1>Tu salud, <em>más cerca</em></h1>
+        <p class="lead">TUMED conecta a las personas con las farmacias y droguerías más cercanas que tienen disponible el medicamento que necesitan, en tiempo real y con una interfaz pensada para todas las edades.
+          y especialmente para el adulto mayor, que muchas veces debe recorrer varias farmacias sin saber si el medicamento que busca está realmente disponible.
+        </p>
+        <div class="hero-ctas">
+          <a href="#funciones" class="btn btn-primary">Ver qué hace TUMED</a>
+          <a href="#diagramas" class="btn btn-ghost">Ver diagramas</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>3 capas</strong>presentación, lógica y datos</div>
+          <div><strong>2 plataformas</strong>app móvil y panel web</div>
+          <div><strong>WCAG 2.1</strong>diseño accesible</div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="ring r2 pulse"></div>
+        <div class="ring r1"></div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-logo">
+              <img src="img/logo_tumed.jpg" alt="Logotipo de TUMED">
+            </div>
+            <div class="phone-search">Buscar medicamento…</div>
+            <div class="phone-pin"><span class="cross">+</span></div>
+            <div class="phone-card">
+              <div class="t1">Acetaminofén 500mg</div>
+              <div class="t2">Disponible en 3 farmacias cerca de ti</div>
+            </div>
+            <div class="phone-card">
+              <div class="t1">Droguería La Esperanza</div>
+              <div class="t2">A 1.2 km · Abierta hasta las 9:00 p.m.</div>
+            </div>
+          </div>
+        </div>
+        <div class="float-card fc1">
+          <div class="label">Última actualización</div>
+          <div class="val">hace 5 minutos</div>
+        </div>
+        <div class="float-card fc2">
+          <span class="dot-ambar"></span>
+          <span class="val">Alerta: nuevo stock disponible</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problema" id="problema">
+    <div class="container problema-grid">
+      <div class="reveal">
+        <span class="eyebrow">Situación problema</span>
+        <h2 style="margin-top:12px;">Encontrar un medicamento no debería tomar toda la tarde</h2>
+      </div>
+      <div class="reveal">
+        <div class="problema-text">
+          <p>Es común tener que recorrer varias farmacias para encontrar un medicamento disponible, especialmente para los adultos mayores, que muchas veces deben desplazarse sin saber si el lugar al que llegan realmente lo tiene en inventario.</p>
+          <p>TUMED reúne en un solo lugar la consulta de medicamentos, la ubicación de las farmacias y el estado real de sus inventarios, para que esa búsqueda se resuelva desde el celular antes de salir de casa.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-top:40px;" id="pregunta-problema">
+      <div class="quote-block reveal">
+        <span class="eyebrow" style="color:var(--ambar); margin-bottom:14px; display:inline-flex;">Pregunta problema</span>
+        <span class="mark" aria-hidden="true">“</span>
+        <p>¿Cómo saber, sin salir de casa, qué farmacia cercana tiene disponible el medicamento que necesito en este momento?</p>
+        <div class="who">Pregunta problema</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="objetivo-general" id="objetivos">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Objetivo general</span>
+        <h2>Hacia dónde apunta TUMED</h2>
+      </div>
+      <div class="og-card reveal">
+        <div class="og-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.2"></circle><circle cx="12" cy="12" r="0.6" fill="#fff"></circle></svg>
+        </div>
+        <p>Desarrollar una plataforma web denominada <strong>TUMED</strong> que facilite a los adultos mayores la búsqueda de medicamentos, la consulta de su disponibilidad en farmacias cercanas, el seguimiento de tratamientos y la recepción de notificaciones sobre disponibilidad o agotamiento de medicamentos, proporcionando una herramienta accesible, intuitiva y confiable que contribuya a mejorar el acceso a la información y la continuidad de los tratamientos médicos.</p>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top:64px;">
+      <div class="section-head reveal">
+        <span class="eyebrow">Objetivos específicos</span>
+        <h2>Ocho metas para lograrlo</h2>
+        <p>Cada objetivo específico responde a una necesidad concreta identificada en el análisis del proyecto TUMED.</p>
+      </div>
+      <div class="oe-grid">
+        <div class="oe-item reveal">
+          <span class="oe-code">OE01</span>
+          <div><h4>Interfaz accesible y amigable</h4><p>Iconografía de gran tamaño, colores de alto contraste, tipografía legible y navegación sencilla para adultos mayores.</p></div>
+        </div>
+        <div class="oe-item reveal">
+          <span class="oe-code">OE02</span>
+          <div><h4>Búsqueda de medicamentos</h4><p>Buscador inteligente con disponibilidad, presentación, laboratorio y farmacias donde encontrarlos.</p></div>
+        </div>
+        <div class="oe-item reveal">
+          <span class="oe-code">OE03</span>
+          <div><h4>Geolocalización de farmacias</h4><p>Visualiza las farmacias más cercanas con dirección, horario, distancia y disponibilidad.</p></div>
+        </div>
+        <div class="oe-item reveal">
+          <span class="oe-code">OE04</span>
+          <div><h4>Seguimiento de medicamentos</h4><p>Guarda medicamentos de interés y consulta el historial de búsquedas frecuentes.</p></div>
+        </div>
+        <div class="oe-item reveal">
+          <span class="oe-code">OE05</span>
+          <div><h4>Alertas y notificaciones</h4><p>Avisos automáticos sobre disponibilidad, agotamiento o cambios relevantes.</p></div>
+        </div>
+        <div class="oe-item reveal">
+          <span class="oe-code">OE06</span>
+          <div><h4>Gestión de información</h4><p>Los administradores registran y actualizan medicamentos, inventarios y farmacias.</p></div>
+        </div>
+        <div class="oe-item reveal">
+          <span class="oe-code">OE07</span>
+          <div><h4>Seguridad de la información</h4><p>Autenticación y control de acceso que protegen los datos personales de los usuarios.</p></div>
+        </div>
+        <div class="oe-item reveal">
+          <span class="oe-code">OE08</span>
+          <div><h4>Consulta optimizada</h4><p>Reduce el tiempo para localizar un medicamento y facilita la toma de decisiones.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="funciones" id="funciones">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Qué hace TUMED</span>
+        <h2>Todo lo necesario para encontrar tu medicamento</h2>
+        <p>Una sola plataforma que une a usuarios y farmacias, con funciones pensadas para resolver la búsqueda real de medicamentos, no solo mostrar información.</p>
+      </div>
+
+      <div class="feat-list">
+
+        <div class="feat-row reveal">
+          <div class="feat-icon" style="background:rgba(0,169,157,.12);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00897F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.2" y2="16.2"></line></svg>
+          </div>
+          <div>
+            <h3>Búsqueda inteligente</h3>
+            <p>Encuentra medicamentos por nombre, categoría, precio o disponibilidad, con información actualizada de presentación, laboratorio y farmacias donde puedes encontrarlos.</p>
+            <span class="feat-tag">Búsqueda y filtrado</span>
+          </div>
+        </div>
+
+        <div class="feat-row reveal">
+          <div class="feat-icon" style="background:rgba(21,101,192,.12);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"></path><circle cx="12" cy="9" r="2.4"></circle></svg>
+          </div>
+          <div>
+            <h3>Farmacias cerca de ti</h3>
+            <p>Visualiza en un mapa interactivo las farmacias más próximas, con dirección, horario de atención, distancia y disponibilidad del medicamento que estás buscando.</p>
+            <span class="feat-tag">Geolocalización GPS</span>
+          </div>
+        </div>
+
+        <div class="feat-row reveal">
+          <div class="feat-icon" style="background:rgba(249,168,37,.16);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C97F00" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v8a3 3 0 0 0 3 3z"></path><path d="M5 11v1a7 7 0 0 0 14 0v-1"></path><line x1="12" y1="22" x2="12" y2="19"></line></svg>
+          </div>
+          <div>
+            <h3>Búsqueda por voz</h3>
+            <p>Pensada especialmente para personas adultas mayores: basta con hablar para buscar un medicamento, sin necesidad de escribir ni navegar por menús complejos.</p>
+            <span class="feat-tag">Accesibilidad</span>
+          </div>
+        </div>
+
+        <div class="feat-row reveal">
+          <div class="feat-icon" style="background:rgba(26,35,126,.10);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>
+          </div>
+          <div>
+            <h3>Notificaciones y seguimiento</h3>
+            <p>Recibe avisos cuando un medicamento vuelva a estar disponible o esté próximo a agotarse, y guarda los que usas con frecuencia para encontrarlos más rápido la próxima vez.</p>
+            <span class="feat-tag">Alertas de disponibilidad</span>
+          </div>
+        </div>
+
+        <div class="feat-row reveal">
+          <div class="feat-icon" style="background:rgba(0,169,157,.12);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00897F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="13" height="11" rx="2"></rect><path d="M16 11h3.2a1 1 0 0 1 .9.55L22 14v4h-6"></path><circle cx="7.5" cy="18.5" r="1.6"></circle><circle cx="17.5" cy="18.5" r="1.6"></circle></svg>
+          </div>
+          <div>
+            <h3>Panel para farmacias</h3>
+            <p>Cada farmacia registrada administra su propio inventario en tiempo real, junto con su ubicación, datos de contacto y horarios, manteniendo la información siempre confiable.</p>
+            <span class="feat-tag">Gestión de inventario</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="pasos" id="como-funciona">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Recorrido</span>
+        <h2>De la búsqueda al medicamento en tres pasos</h2>
+        <p>Un flujo corto y directo, igual de simple para un usuario frecuente que para alguien que usa la aplicación por primera vez.</p>
+      </div>
+
+      <div class="pasos-grid">
+        <div class="paso reveal">
+          <span class="num">01</span>
+          <h3>Busca tu medicamento</h3>
+          <p>Escribe el nombre o usa la búsqueda por voz. TUMED muestra presentación, laboratorio y disponibilidad al instante.</p>
+        </div>
+        <div class="paso reveal">
+          <span class="num">02</span>
+          <h3>Localiza la farmacia</h3>
+          <p>Revisa en el mapa qué farmacias cercanas lo tienen disponible ahora mismo, con distancia y horario de atención.</p>
+        </div>
+        <div class="paso reveal">
+          <span class="num">03</span>
+          <h3>Recíbelo o recógelo</h3>
+          <p>Dirígete directo a la farmacia, ya con la disponibilidad confirmada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="roles" id="roles">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Para quién es</span>
+        <h2>Tres roles, una misma plataforma</h2>
+        <p>TUMED organiza el sistema alrededor de tres tipos de usuario, cada uno con herramientas adaptadas a lo que necesita hacer.</p>
+      </div>
+
+      <div class="roles-grid">
+        <div class="role-card reveal">
+          <div class="role-icon" style="background:rgba(0,169,157,.12);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00897F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+          </div>
+          <h3>Usuario</h3>
+          <p>Busca medicamentos, localiza farmacias cercanas y hace seguimiento a lo que necesita comprar.</p>
+          <ul>
+            <li>Búsqueda por texto o por voz</li>
+            <li>Historial y medicamentos frecuentes</li>
+            <li>Calificación de farmacias</li>
+          </ul>
+        </div>
+
+        <div class="role-card reveal">
+          <div class="role-icon" style="background:rgba(21,101,192,.12);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"></path><path d="M5 10v10h14V10"></path><path d="M12 13v5"></path><path d="M9.5 15.5h5"></path></svg>
+          </div>
+          <h3>Farmacia</h3>
+          <p>Registra su droguería, mantiene el inventario al día y atiende los pedidos que recibe desde la app.</p>
+          <ul>
+            <li>Gestión de inventario en tiempo real</li>
+            <li>Ubicación, horario y contacto</li>
+            <li>Recepción de pedidos</li>
+          </ul>
+        </div>
+
+        <div class="role-card reveal">
+          <div class="role-icon" style="background:rgba(249,168,37,.16);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C97F00" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          </div>
+          <h3>Administrador</h3>
+          <p>Supervisa usuarios, farmacias y reportes, manteniendo la información de la plataforma actualizada y confiable.</p>
+          <ul>
+            <li>Gestión de usuarios y farmacias</li>
+            <li>Reportes del sistema</li>
+            <li>Control de acceso y seguridad</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="diagramas" id="diagramas">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Modelado del sistema</span>
+        <h2>Diagramas de TUMED</h2>
+        <p>El modelado UML representa gráficamente la estructura, el comportamiento y las relaciones de la plataforma antes de la etapa de desarrollo.</p>
+      </div>
+
+      <div class="tabs" data-tabs="diagramas" role="tablist">
+        <button class="tab-btn active" data-tab="casos">Casos de uso</button>
+        <button class="tab-btn" data-tab="actividades">Actividades</button>
+        <button class="tab-btn" data-tab="clases">Clases</button>
+        <button class="tab-btn" data-tab="arquitectura-diag">Arquitectura</button>
+        <button class="tab-btn" data-tab="mer">MER</button>
+        <button class="tab-btn" data-tab="logico">Modelo lógico</button>
+        <button class="tab-btn" data-tab="fisico">Modelo físico</button>
+        <button class="tab-btn" data-tab="relacional">Relacional</button>
+      </div>
+
+      <div class="tab-panels" data-panels="diagramas">
+
+        <div class="tab-panel active" data-panel="casos">
+          <div class="diagram-card reveal">
+            <figure><img src="img/caso_usos.jpg"Diagrama de casos de uso de TUMED, con los actores Usuario y Administrador"></figure>
+            <div class="diagram-caption">
+              <h3>Diagrama de casos de uso</h3>
+              <p>El color agrupa los casos de uso por actor: azul para Administrador, verde azulado para Usuario y coral para Farmacia. Fíjate que "Realizar pedido" tiene una línea extra conectada a Farmacia, porque es un caso de uso compartido: el Usuario lo inicia y la Farmacia lo recibe.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="actividades">
+          <div class="diagram-card reveal">
+            <figure><img src="img/diagrama_actividades.jpg"Diagrama de actividades de TUMED para Usuario y Administrador"></figure>
+            <div class="diagram-caption">
+              <h3>Diagrama de actividades</h3>
+              <p>Muestra el flujo de trabajo de los procesos principales, desde el inicio de sesión hasta la búsqueda de medicamentos por parte del usuario y la gestión de módulos por parte del administrador.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="clases">
+          <div class="diagram-card reveal">
+            <figure><img src="img/diagrama_clases.jpg" alt="Diagrama de clases de TUMED"></figure>
+            <div class="diagram-caption">
+              <h3>Diagrama de clases</h3>
+              <p>Representa la estructura estática del sistema: clases como Usuario, Medicamento, Farmacia, Inventario y Notificación, con sus atributos, métodos y relaciones.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="arquitectura-diag">
+          <div class="diagram-card reveal" style="padding:34px 30px;">
+            <div class="capas">
+              <div class="capa c1">
+                <div class="n">1</div>
+                <div><h4>Capa de presentación</h4><p>App móvil y panel web. Interfaz diseñada en Figma con principios de accesibilidad para adultos mayores.</p></div>
+              </div>
+              <div class="capa-arrow">↓</div>
+              <div class="capa c2">
+                <div class="n">2</div>
+                <div><h4>Capa de lógica de negocio</h4><p>Valida datos, procesa búsquedas, consulta disponibilidad y gestiona notificaciones y permisos.</p></div>
+              </div>
+              <div class="capa-arrow">↓</div>
+              <div class="capa c3">
+                <div class="n">3</div>
+                <div><h4>Capa de datos</h4><p>Base de datos MySQL: usuarios, medicamentos, farmacias, inventarios, historial y notificaciones.</p></div>
+              </div>
+            </div>
+            <div class="diagram-caption" style="padding-left:0; padding-right:0; border-top:none; margin-top:10px;">
+              <h3>Arquitectura cliente–servidor de tres capas</h3>
+              <p>Cada capa cumple una función específica, reduciendo el acoplamiento entre la interfaz, la lógica del sistema y el almacenamiento de datos. Ver el detalle completo en la sección Arquitectura.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="mer">
+          <div class="diagram-card reveal">
+            <figure><img src="img/mer.jpg" alt="Modelo Entidad-Relación de TUMED"></figure>
+            <div class="diagram-caption">
+              <h3>Modelo Entidad–Relación (MER)</h3>
+              <p>Representa gráficamente las entidades principales del sistema —Usuario, Medicamento, Farmacia, Inventario, Notificación, Historial y Favorito— y las relaciones existentes entre ellas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="logico">
+          <div class="diagram-card reveal">
+            <figure><img src="img/modelo_logico.png"Modelo lógico de la base de datos de TUMED"></figure>
+            <div class="diagram-caption">
+              <h3>Modelo lógico</h3>
+              <p>Define las tablas, atributos, claves primarias y foráneas, y las relaciones entre entidades, independientemente del motor de base de datos que se use para implementarlas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="fisico">
+          <div class="diagram-card reveal">
+            <figure><img src="img/script_sql_completo.png" alt="Modelo físico de la base de datos de TUMED"></figure>
+            <div class="diagram-caption">
+              <h3>Modelo físico</h3>
+              <p>Traduce el modelo lógico a la estructura real implementada en MySQL, con tipos de dato, índices, restricciones y nombres definitivos de tablas y columnas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="relacional">
+          <div class="diagram-card reveal">
+            <figure><img src="img/diagrama_relacional.png" alt="Modelo relacional de la base de datos de TUMED"></figure>
+            <div class="diagram-caption">
+              <h3>Modelo relacional</h3>
+              <p>Transforma el modelo entidad-relación en las tablas implementadas en MySQL, con sus claves primarias, foráneas y tipos de dato definidos en el diccionario de datos.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="text-align:center; margin-top:18px; font-size:0.82rem; color:var(--gris);">Toca cualquier diagrama para verlo en tamaño completo.</p>
+    </div>
+  </section>
+
+  <section class="pasos" id="arquitectura" style="padding-top:84px;">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Cómo está construido TUMED</span>
+        <h2>Arquitectura, patrones y estándares</h2>
+        <p>Arquitectura cliente-servidor de tres capas, patrones de diseño, estándares de codificación, metodología Scrum y manual de marca aplicados durante el desarrollo del proyecto.</p>
+      </div>
+
+      <div class="tabs" data-tabs="arch" role="tablist">
+        <button class="tab-btn active" data-tab="capas">Arquitectura</button>
+        <button class="tab-btn" data-tab="patrones">Patrones</button>
+        <button class="tab-btn" data-tab="estandares">Estándares</button>
+        <button class="tab-btn" data-tab="scrum">Metodología Scrum</button>
+        <button class="tab-btn" data-tab="marca">Manual de marca</button>
+        <button class="tab-btn" data-tab="logo">Logo</button>
+      </div>
+
+      <div class="tab-panels" data-panels="arch">
+
+        <div class="tab-panel active" data-panel="capas">
+          <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
+            <div class="capas">
+              <div class="capa c1">
+                <div class="n">1</div>
+                <div><h4>Presentación</h4><p>Interfaz de usuario: muestra información, captura datos, presenta resultados y mapas, y gestiona la navegación entre pantallas.</p></div>
+              </div>
+              <div class="capa-arrow">↓</div>
+              <div class="capa c2">
+                <div class="n">2</div>
+                <div><h4>Lógica de negocio</h4><p>Valida información, procesa búsquedas, consulta disponibilidad, administra notificaciones y controla permisos por rol.</p></div>
+              </div>
+              <div class="capa-arrow">↓</div>
+              <div class="capa c3">
+                <div class="n">3</div>
+                <div><h4>Datos</h4><p>Almacenamiento permanente en MySQL: usuarios, administradores, medicamentos, farmacias, inventarios y notificaciones.</p></div>
+              </div>
+            </div>
+            <div>
+              <h3 style="font-size:1.1rem; color:var(--azul-marino); margin-bottom:10px;">Flujo general</h3>
+              <ol class="flujo-list">
+                <li>El usuario accede a la plataforma TUMED.</li>
+                <li>La interfaz recibe la solicitud.</li>
+                <li>La solicitud se envía al servidor.</li>
+                <li>El servidor valida la información.</li>
+                <li>Se consulta la base de datos.</li>
+                <li>La información es procesada.</li>
+                <li>El servidor genera una respuesta.</li>
+                <li>La interfaz presenta los resultados al usuario.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="patrones">
+          <div class="chip-grid reveal">
+            <div class="chip-card">
+              <h4>Arquitectura de tres capas</h4>
+              <p>Separa la interfaz, la lógica de negocio y el acceso a los datos.</p>
+            </div>
+            <div class="chip-card">
+              <h4>Cliente–servidor</h4>
+              <p>Los usuarios acceden a la información almacenada en el servidor mediante una conexión segura.</p>
+            </div>
+            <div class="chip-card">
+              <h4>CRUD</h4>
+              <p>Creación, consulta, actualización y eliminación sobre usuarios, farmacias y medicamentos.</p>
+            </div>
+            <div class="chip-card">
+              <h4>MVVM · MVC · Repository/DAO</h4>
+              <p>Patrones de diseño que separan responsabilidades en el código, junto con Observer y Factory Method.</p>
+            </div>
+          </div>
+          <h3 style="font-size:1.05rem; color:var(--azul-marino); margin:30px 0 12px;">Seguridad de la arquitectura</h3>
+          <div class="chip-grid reveal">
+            <div class="chip-card"><p>Autenticación mediante usuario y contraseña.</p></div>
+            <div class="chip-card"><p>Control de acceso basado en roles (Administrador y Usuario).</p></div>
+            <div class="chip-card"><p>Cifrado de contraseñas y validación de datos de entrada.</p></div>
+            <div class="chip-card"><p>Copias de seguridad periódicas de la información.</p></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="estandares">
+          <div class="reveal">
+            <h3 style="font-size:1.05rem; color:var(--azul-marino); margin-bottom:12px;">Tecnologías utilizadas</h3>
+            <div class="stack-grid">
+              <div class="stack-pill">HTML5</div>
+              <div class="stack-pill">CSS3</div>
+              <div class="stack-pill">JavaScript</div>
+              <div class="stack-pill">MySQL</div>
+              <div class="stack-pill">Figma</div>
+              <div class="stack-pill">Visual Studio Code</div>
+              <div class="stack-pill">Git &amp; GitHub</div>
+              <div class="stack-pill">Google Maps</div>
+            </div>
+          </div>
+
+          <div class="reveal" style="margin-top:34px;">
+            <h3 style="font-size:1.05rem; color:var(--azul-marino); margin-bottom:12px;">Convenciones de nombramiento</h3>
+            <div class="chip-grid">
+              <div class="chip-card"><h4>Variables</h4><p>camelCase — nombreUsuario, fechaRegistro.</p></div>
+              <div class="chip-card"><h4>Funciones</h4><p>Verbos de acción — buscarMedicamento(), enviarNotificacion().</p></div>
+              <div class="chip-card"><h4>Clases</h4><p>PascalCase — Usuario, Medicamento, Farmacia.</p></div>
+              <div class="chip-card"><h4>Base de datos</h4><p>Nombres claros en minúscula — medicamento, historial_busqueda.</p></div>
+            </div>
+          </div>
+
+          <div class="reveal" style="margin-top:34px;">
+            <h3 style="font-size:1.05rem; color:var(--azul-marino); margin-bottom:12px;">Buenas prácticas de codificación</h3>
+            <div class="chip-grid">
+              <div class="chip-card"><p>Nombres descriptivos para variables, funciones y clases.</p></div>
+              <div class="chip-card"><p>Organización modular del código por funcionalidad.</p></div>
+              <div class="chip-card"><p>Validación de datos ingresados por los usuarios.</p></div>
+              <div class="chip-card"><p>Reutilización de componentes y diseño adaptable.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="scrum">
+          <div class="scrum-grid reveal">
+            <div class="scrum-img">
+              <img src="img/trabajo_scrum.jpg" alt="Ciclo de trabajo Scrum aplicado al proyecto TUMED: Product Backlog, Sprint Planning, Sprint, Daily Scrum, Sprint Review y Sprint Retrospective">
+            </div>
+            <div>
+              <h3 style="font-size:1.05rem; color:var(--azul-marino); margin-bottom:10px;">Roles del equipo Scrum</h3>
+              <table class="scrum-table">
+                <thead>
+                  <tr><th>Rol</th><th>Función en TUMED</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Scrum Master</td><td>Coordina sprints, elimina obstáculos y vela por las ceremonias ágiles.</td></tr>
+                  <tr><td>Product Owner</td><td>Prioriza los requisitos RF01–RF15 y representa la voz del usuario.</td></tr>
+                  <tr><td>Equipo de desarrollo</td><td>Analiza, diseña, implementa y documenta cada requisito del sprint.</td></tr>
+                </tbody>
+              </table>
+              <p style="margin-top:16px; font-size:0.9rem;">Cinco sprints de dos semanas permiten entregar de forma incremental los 15 requisitos funcionales de la ERS en un plazo estimado de 19 semanas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="marca">
+          <div class="id-grid reveal" style="color:var(--gris);">
+            <div>
+              <div class="palette">
+                <div class="swatch" style="background:#00A99D; color:#fff;">
+                  <div class="name">Verde Salud</div><div class="hex">#00A99D</div>
+                </div>
+                <div class="swatch" style="background:#1565C0; color:#fff;">
+                  <div class="name">Azul Tecnología</div><div class="hex">#1565C0</div>
+                </div>
+                <div class="swatch" style="background:#1A237E; color:#fff;">
+                  <div class="name">Azul Marino</div><div class="hex">#1A237E</div>
+                </div>
+                <div class="swatch" style="background:#F9A825; color:#1A237E;">
+                  <div class="name">Ámbar Accesible</div><div class="hex">#F9A825</div>
+                </div>
+                <div class="swatch" style="background:#455A64; color:#fff;">
+                  <div class="name">Gris Neutro</div><div class="hex">#455A64</div>
+                </div>
+                <div class="swatch" style="background:#F5F7F8; color:#1A237E; border:1px solid var(--line);">
+                  <div class="name">Fondo claro</div><div class="hex">#F5F7F8</div>
+                </div>
+              </div>
+              <div class="access-points" style="margin-top:0;">
+                <span style="background:var(--bg); border-color:var(--line); color:var(--azul-marino);">Texto mínimo de 16 pt</span>
+                <span style="background:var(--bg); border-color:var(--line); color:var(--azul-marino);">Botones de 48×48 px</span>
+                <span style="background:var(--bg); border-color:var(--line); color:var(--azul-marino);">Alto contraste</span>
+                <span style="background:var(--bg); border-color:var(--line); color:var(--azul-marino);">Iconos de trazo grueso</span>
+              </div>
+              <p style="margin-top:20px; font-size:0.92rem;">Nombre TUMED, propósito de conectar personas con farmacias cercanas y eslogan <em>“tu salud, más cerca”</em>: una frase corta, cálida y fácil de leer para todo tipo de usuario.</p>
+            </div>
+
+            <div class="type-demo" style="background:var(--white); border:1px solid var(--line);">
+              <div class="td-h1" style="color:var(--azul-marino);">Encuentra tu medicamento</div>
+              <span class="hex" style="color:var(--gris);">H1 · Poppins 700 · 32 pt</span>
+              <hr style="border-top:1px solid var(--line);">
+              <div class="td-h2">Farmacias cerca de ti</div>
+              <span class="hex" style="color:var(--gris);">H2 · Poppins 600 · 22 pt</span>
+              <hr style="border-top:1px solid var(--line);">
+              <div class="td-body" style="color:var(--gris);">Disponible en 3 farmacias a menos de 1 km de tu ubicación.</div>
+              <span class="hex" style="color:var(--gris);">Cuerpo · Noto Sans 400 · 16 pt mínimo</span>
+              <hr style="border-top:1px solid var(--line);">
+              <div class="td-caption" style="color:var(--gris);">Última actualización del inventario: hace 5 minutos</div>
+              <span class="hex" style="color:var(--gris);">Nota · Noto Sans 400 · 13 pt</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel="logo">
+          <div class="reveal" style="display:grid; grid-template-columns:1.3fr 0.7fr; gap:40px; align-items:center;">
+            <div>
+              <h3 style="font-size:1.05rem; color:var(--azul-marino); margin-bottom:12px;">El logotipo de TUMED</h3>
+
+              <p>El nombre TUMED surge de unir "tu" y "medicamento", una forma de dejar claro desde el nombre mismo que la plataforma está construida alrededor del usuario y no de la farmacia. El símbolo que acompaña el nombre retoma la cruz, señal universal de salud, dibujada con trazo grueso para que se mantenga legible incluso en tamaños pequeños o para personas con baja visión.</p>
+
+              <p>La paleta del logotipo combina el Verde Salud (#00A99D) con el Azul Tecnología (#1565C0): el primero conecta con el bienestar y la atención médica, el segundo con la confiabilidad de la plataforma. Ambos tonos se eligieron también por su alto contraste, uno de los principios centrales del proyecto, pensado especialmente para que los adultos mayores puedan identificar la marca sin esfuerzo.</p>
+
+              <p>La tipografía acompaña esa misma intención: Poppins en los títulos aporta un trazo redondeado y cercano, mientras Noto Sans en los textos de cuerpo prioriza la legibilidad en pantallas pequeñas. Esa combinación de cercanía visual y claridad es la que finalmente resume el eslogan de la marca: <em>"tu salud, más cerca"</em>.</p>
+            </div>
+
+            <div style="display:flex; justify-content:center; align-items:center; background:var(--white); border:1px solid var(--line); border-radius:16px; padding:30px;">
+              <img src="img/logo_tumed.jpg" alt="Logotipo de TUMED" style="max-width:100%; height:auto;">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="prototipo" id="prototipo">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Prototipo interactivo</span>
+        <h2>Así se ve TUMED en Figma</h2>
+        <p>Un prototipo navegable, en versión web y móvil, que muestra cómo se resuelve cada pantalla antes de pasar al código.</p>
+      </div>
+
+      <div class="proto-grid">
+        <div class="reveal">
+          <p style="color:#DCE0F6; font-size:0.98rem;">El prototipo recorre el flujo completo de un usuario: desde que abre la aplicación hasta que encuentra su medicamento en una farmacia cercana, además de las pantallas de gestión que usa el administrador.</p>
+
+          <ul class="proto-points">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00D4B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              Pantallas de inicio de sesión y registro de usuario
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00D4B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              Búsqueda de medicamentos y resultados de disponibilidad
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00D4B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              Mapa con las farmacias cercanas y su información
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00D4B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              Perfil, historial y notificaciones del usuario
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00D4B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              Panel administrativo para gestionar farmacias y medicamentos
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00D4B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              Versión web y versión móvil del mismo flujo
+            </li>
+          </ul>
+
+          <div class="proto-actions">
+            <a href="https://www.figma.com/design/FPUX22JfQHNzaQdwHnTycz/Sin-t%C3%ADtulo?node-id=4-3062&t=yJ3qHlgPbtV9mo6H-0" target="_blank" rel="noopener" class="btn btn-primary">Abrir en Figma</a>
+            <a href="#arquitectura" class="btn btn-ghost">Ver arquitectura</a>
+          </div>
+        </div>
+
+        <div class="figma-embed reveal">
+          <img src="img/tumed_preview.png" alt="Vista previa de la aplicación móvil de TUMED" style="width:100%; height:auto; display:block; border-radius:12px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="container">
+      <div class="cta-box reveal">
+        <h2>Tu salud, más cerca de lo que crees</h2>
+        <p>TUMED es un proyecto formativo del SENA que busca facilitar el acceso a medicamentos para toda la familia, con especial atención a los adultos mayores.</p>
+        <div class="cta-row">
+          <a href="#top" class="btn btn-primary">Volver al inicio</a>
+          <a href="#prototipo" class="btn btn-ghost">Ver prototipo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="img/logo_tumed.jpg" alt="Logotipo de TUMED">
+          TUMED
+        </div>
+        <p class="footer-slogan">Tu salud, más cerca. Conectamos personas con las farmacias que tienen lo que necesitan, cuando lo necesitan.</p>
+      </div>
+
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#problema">El problema</a></li>
+          <li><a href="#objetivos">Objetivos</a></li>
+          <li><a href="#diagramas">Diagramas</a></li>
+          <li><a href="#arquitectura">Arquitectura</a></li>
+          <li><a href="#prototipo">Prototipo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Proyecto</h4>
+        <ul>
+          <li>SENA — Ficha 3275760</li>
+          <li>Especificación bajo IEEE 830-1998</li>
+          <li>Accesibilidad WCAG 2.1</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 TUMED. Proyecto formativo SENA.</span>
+      <span>Diseñado para leerse y usarse fácil.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Cerrar">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
